@@ -1,13 +1,13 @@
-package github.io.volong.springbootswagger;
+package github.io.volong.swagger;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootSwaggerApplication {
+public class SpringbootApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootSwaggerApplication.class, args);
+        SpringApplication.run(SpringbootApplication.class, args);
     }
 
 }

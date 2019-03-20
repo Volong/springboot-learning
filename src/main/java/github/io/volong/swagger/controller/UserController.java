@@ -1,6 +1,6 @@
-package github.io.volong.springbootswagger.controller;
+package github.io.volong.swagger.controller;
 
-import github.io.volong.springbootswagger.model.User;
+import github.io.volong.swagger.model.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;

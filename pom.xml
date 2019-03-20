@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>github.io.volong</groupId>
-    <artifactId>springboot-swagger</artifactId>
+    <artifactId>springboot-learning</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-swagger</name>
+    <name>springboot-learning</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

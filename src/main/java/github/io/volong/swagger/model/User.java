@@ -1,4 +1,4 @@
-package github.io.volong.springbootswagger.model;
+package github.io.volong.swagger.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

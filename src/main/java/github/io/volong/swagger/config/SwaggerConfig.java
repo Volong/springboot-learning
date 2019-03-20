@@ -1,4 +1,4 @@
-package github.io.volong.springbootswagger.config;
+package github.io.volong.swagger.config;
 
 import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
