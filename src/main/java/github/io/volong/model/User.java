@@ -1,4 +1,4 @@
-package github.io.volong.swagger.model;
+package github.io.volong.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

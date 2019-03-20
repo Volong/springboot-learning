@@ -1,4 +1,4 @@
-package github.io.volong.swagger;
+package github.io.volong;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

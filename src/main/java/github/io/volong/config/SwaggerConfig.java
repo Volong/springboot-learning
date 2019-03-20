@@ -1,4 +1,4 @@
-package github.io.volong.swagger.config;
+package github.io.volong.config;
 
 import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +28,7 @@ public class SwaggerConfig {
 
                 // 扫描指定包下面的接口
                 // .apis(RequestHandlerSelectors.any())
-                .apis(RequestHandlerSelectors.basePackage("github.io.volong.springbootswagger.controller"))
+                .apis(RequestHandlerSelectors.basePackage("github.io.volong.controller"))
 
                 // 扫描指定的接口
                 // .paths(PathSelectors.any())
