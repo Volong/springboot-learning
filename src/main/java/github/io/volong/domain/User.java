@@ -1,54 +1,102 @@
 package github.io.volong.domain;
 
-import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.io.Serializable;
 
-public class User {
+/**
+ *
+ * Entity 中不映射成列的字段得加 @Transient 注解，不加注解也会映射成列。
+ *
+ */
+@Entity
+public class User implements Serializable {
 
-    @NotEmpty(message = "姓名不能为空")
-    private String name;
+    private static final long serialVersionUID = 1L;
 
-    @Max(value = 100, message = "年龄不能大于 100 岁")
-    @Min(value= 18 ,message= "必须年满 18 岁！" )
-    private int age;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-    @NotEmpty(message="密码不能为空")
-    @Length(min=6,message="密码长度不能小于 6 位")
-    private String pass;
+    @Column(nullable = false, unique = true)
+    private String userName;
 
-    public String getName() {
-        return name;
+    @Column(nullable = false)
+    private String passWord;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = true, unique = true)
+    private String nickName;
+
+    @Column(nullable = false)
+    private String regTime;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public User() {
+
     }
 
-    public int getAge() {
-        return age;
+    public User(String userName, String email, String nickName, String passWord, String regTime) {
+        this.userName = userName;
+        this.passWord = passWord;
+        this.email = email;
+        this.nickName = nickName;
+        this.regTime = regTime;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public Long getId() {
+        return id;
     }
 
-    public String getPass() {
-        return pass;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public String getUserName() {
+        return userName;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", pass='" + pass + '\'' +
-                '}';
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getRegTime() {
+        return regTime;
+    }
+
+    public void setRegTime(String regTime) {
+        this.regTime = regTime;
     }
 }
