@@ -56,8 +56,8 @@ public class UserRepositoryTests {
         List<User> all = userRepository.findAll();
         Assert.assertTrue(all.size() > 0);
 
-        Optional<User> one = userRepository.findOne(Example.of(user));
-        Assert.assertFalse(one.isPresent());
+        User one = userRepository.findOne(1l);
+        Assert.assertNull(one);
 
         User save = userRepository.save(user);
         Assert.assertNotNull(save);
@@ -84,7 +84,7 @@ public class UserRepositoryTests {
          */
         int page = 0, size = 10;
         Sort sort = new Sort(Sort.Direction.DESC, "id");
-        Pageable pageable = PageRequest.of(page, size, sort);
+        Pageable pageable = new PageRequest(page, size, sort);
 
         Page<User> all = userRepository.findALL(pageable);
 
