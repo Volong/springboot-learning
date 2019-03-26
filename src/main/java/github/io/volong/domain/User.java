@@ -9,6 +9,8 @@ import java.io.Serializable;
 
 /**
  *
+ * @Entity 实体类和表相关连
+ *
  * Entity 中不映射成列的字段得加 @Transient 注解，不加注解也会映射成列。
  *
  */
