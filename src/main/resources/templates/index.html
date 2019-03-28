@@ -1,0 +1,13 @@
+<body>
+
+    <!--
+    th:include 和 th:replace 区别，include 只是加载，replace 是替换。
+
+    layout 是文件夹地址，copyright 是文件名，语法这样写：layout/fileName:htmlhead 。
+
+    htmlhead 是指定义的代码片段 如 th:fragment="copyright"。
+    -->
+
+    <div th:include="layout/copyright :: copyright"></div>
+    <div th:replace="layout/copyright :: copyright"></div>
+</body>
