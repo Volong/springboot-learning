@@ -6,22 +6,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
- *
  * @Entity 实体类和表相关连
- *
+ * <p>
  * Entity 中不映射成列的字段得加 @Transient 注解，不加注解也会映射成列。
- *
  */
 @Entity
-public class User implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class User {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
 
     @Column(nullable = false, unique = true)
     private String userName;
@@ -29,36 +26,17 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String passWord;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-
-    @Column(nullable = true, unique = true)
-    private String nickName;
+    @Column(nullable = false)
+    private int age;
 
     @Column(nullable = false)
-    private String regTime;
+    private Date regTime;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    public User() {
-
-    }
-
-    public User(String userName, String email, String nickName, String passWord, String regTime) {
-        this.userName = userName;
-        this.passWord = passWord;
-        this.email = email;
-        this.nickName = nickName;
-        this.regTime = regTime;
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -78,27 +56,19 @@ public class User implements Serializable {
         this.passWord = passWord;
     }
 
-    public String getEmail() {
-        return email;
+    public int getAge() {
+        return age;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
-    public String getRegTime() {
+    public Date getRegTime() {
         return regTime;
     }
 
-    public void setRegTime(String regTime) {
+    public void setRegTime(Date regTime) {
         this.regTime = regTime;
     }
 }
