@@ -1,22 +1,15 @@
 package github.io.volong;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class SpringbootApplication extends SpringBootServletInitializer {
-
-    /**
-     * 添加 Servlet 的支持。but why?
-     * @param builder
-     * @return
-     */
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(SpringbootApplication.class);
-    }
+// Spring Boot 启动的时候会自动加载包路径下的 Mapper
+@MapperScan("github.io.volong.mapper")
+public class SpringbootApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringbootApplication.class, args);
