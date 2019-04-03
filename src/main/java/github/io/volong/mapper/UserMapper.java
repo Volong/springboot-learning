@@ -1,6 +1,7 @@
 package github.io.volong.mapper;
 
 import github.io.volong.entity.UserEntity;
+import github.io.volong.param.UserParam;
 
 import java.util.List;
 
@@ -18,4 +19,8 @@ public interface UserMapper {
     void update(UserEntity user);
 
     void delete(Long id);
+
+    List<UserEntity> getList(UserParam userParam);
+
+    int getCount(UserParam userParam);
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
 <mapper namespace="github.io.volong.mapper.UserMapper" >
 
     <resultMap id="BaseResultMap" type="github.io.volong.entity.UserEntity" >
@@ -21,6 +22,14 @@
         from users
     </select>
 
+    <sql id="Base_Where_List">
+        <if test="userName != null and userName !=''">
+            and userName = #{userName}
+        </if>
+        <if test="userSex != null and userSex != ''">
+            and user_sex = #{userSex}
+        </if>
+    </sql>
     <select id="getOne" parameterType="Long" resultMap="BaseResultMap">
         select
         <!--引入通用的 SQL 片段-->
@@ -46,4 +55,19 @@
     <delete id="delete" parameterType = "Long">
         delete from users where id = #{id}
     </delete>
+
+    <select id="getList" resultMap="BaseResultMap" parameterType="github.io.volong.param.UserParam" >
+        select
+        <include refid="Base_Column_List" />
+        from users
+        where 1 = 1
+        <include refid="Base_Where_List" />
+        limit #{beginLine}, #{pageSize}
+    </select>
+
+    <select id="getCount" resultType="Integer" parameterType="github.io.volong.param.UserParam">
+        select count(1) from users where 1 = 1
+        <include refid="Base_Where_List" />
+    </select>
+
 </mapper>
