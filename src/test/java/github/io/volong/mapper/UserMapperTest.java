@@ -34,11 +34,11 @@ public class UserMapperTest {
     public void testPage() {
         UserParam userParam = new UserParam();
         userParam.setUserSex(UserSexEnum.MAN.name());
-        userParam.setCurrentPage(1);
+        userParam.setCurrentPage(0);
 
         List<UserEntity> users = userMapper.getList(userParam);
         int count = userMapper.getCount(userParam);
-
+        System.out.println(users);
         Page page = new Page(userParam, count, users);
         System.out.println(page);
     }

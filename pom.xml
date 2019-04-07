@@ -30,9 +30,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!--
+        mysql 的版本太高，而这个的版本太低会导致这个异常
+        java.sql.SQLException: Unable to load authentication plugin 'caching_sha2_password'.-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.11</version>
         </dependency>
 
         <dependency>
