@@ -25,3 +25,5 @@
 1. 使用 XML 配置文件的方式
 2. 使用注解的方式
 
+[07](https://github.com/Volong/springboot-learning/tree/gitchat/chapter08)  
+MyBatis 结合 Druid 配置多数据源
