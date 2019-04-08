@@ -3,7 +3,10 @@ package github.io.volong.mapper;
 import github.io.volong.domain.Page;
 import github.io.volong.domain.UserSexEnum;
 import github.io.volong.entity.UserEntity;
+import github.io.volong.mapper.one.UserOneMapper;
+import github.io.volong.mapper.two.UserTwoMapper;
 import github.io.volong.param.UserParam;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,26 +23,17 @@ import java.util.List;
 public class UserMapperTest {
 
     @Autowired
-    private UserMapper userMapper;
+    private UserOneMapper userOneMapper;
+
+    @Autowired
+    private UserTwoMapper userTwoMapper;
 
     @Test
-    public void testUser() {
-        userMapper.insert(new UserEntity("aa", "111111", UserSexEnum.MAN));
+    public void testInsert() {
+        userOneMapper.insert(new UserEntity("yi", "yi123456", UserSexEnum.WOMAN));
+        userTwoMapper.insert(new UserEntity("hai", "hai123456", UserSexEnum.MAN));
 
-
-        userMapper.delete(1L);
-    }
-
-    @Test
-    public void testPage() {
-        UserParam userParam = new UserParam();
-        userParam.setUserSex(UserSexEnum.MAN.name());
-        userParam.setCurrentPage(0);
-
-        List<UserEntity> users = userMapper.getList(userParam);
-        int count = userMapper.getCount(userParam);
-        System.out.println(users);
-        Page page = new Page(userParam, count, users);
-        System.out.println(page);
+        Assert.assertFalse(userOneMapper.getAll().isEmpty());
+        Assert.assertFalse(userTwoMapper.getAll().isEmpty());
     }
 }
