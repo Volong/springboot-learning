@@ -27,3 +27,6 @@
 
 [07](https://github.com/Volong/springboot-learning/tree/gitchat/chapter08)  
 MyBatis 结合 Druid 配置多数据源
+
+[08](https://github.com/Volong/springboot-learning/tree/gitchat/chapter09)  
+SpringBoot 与 Redis 结合使用
