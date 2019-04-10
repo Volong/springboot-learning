@@ -4,12 +4,15 @@ package github.io.volong.controller;/**
 
 import github.io.volong.entity.User;
 import github.io.volong.repository.UserRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.sound.midi.Soundbank;
 import java.util.List;
 
 /**
@@ -75,4 +78,20 @@ public class UserController {
         System.out.println("执行了数据库操作");
         return byNickname;
     }
+
+    /**
+     * allEntries 为 boolean 类型，表示是否需要
+     *
+     * @param nickname
+     * @return
+     */
+    @CacheEvict(value = "usersCache", allEntries = true)
+    @RequestMapping("/allEntries")
+    public List<User> allEntries(String nickname) {
+        List<User> byNickname = userRepository.findByNickname(nickname);
+        System.out.println("执行了数据库操作");
+        return byNickname;
+    }
+
+
 }
