@@ -4,7 +4,6 @@ package github.io.volong.controller;/**
 
 import github.io.volong.entity.User;
 import github.io.volong.repository.UserRepository;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -12,8 +11,10 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.sound.midi.Soundbank;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @time 2019-03-29
@@ -80,7 +81,9 @@ public class UserController {
     }
 
     /**
-     * allEntries 为 boolean 类型，表示是否需要
+     * allEntries 为 boolean 类型，表示是否需要清除缓存中的所有元素。
+     *
+     * 如下的示例将会清除名为 usersCache 的缓存中所有的元素
      *
      * @param nickname
      * @return
@@ -93,5 +96,50 @@ public class UserController {
         return byNickname;
     }
 
+    /**
+     * 清除操作默认是在对应方法成功执行之后触发的，即方法如果因为抛出异常而未能成功返回时也不会触发清除操作。
+     *
+     * beforeInvocation 可以改变触发清除操作的时间，当我们指定该属性值为 true 时，Spring 会在调用该方法之前清除缓存中的指定元素。
+     *
+     */
+    @RequestMapping("/beforeInvocation")
+    @CacheEvict(value="usersCache", allEntries=true, beforeInvocation=true)
+    public void beforeInvocation() {
+        throw new RuntimeException("test beforeInvocation");
+    }
 
+    @RequestMapping(value = "/setSession")
+    public Map<String, Object> setSession (HttpServletRequest request){
+        Map<String, Object> map = new HashMap<>();
+        request.getSession().setAttribute("message", request.getRequestURL());
+        map.put("request Url", request.getRequestURL());
+        return map;
+    }
+
+    @RequestMapping(value = "/getSession")
+    public Object getSession (HttpServletRequest request){
+        Map<String, Object> map = new HashMap<>();
+        map.put("sessionId", request.getSession().getId());
+        map.put("message", request.getSession().getAttribute("message"));
+        return map;
+    }
+
+    @RequestMapping(value = "/login")
+    public String login (HttpServletRequest request,String userName,String password) {
+        User user = userRepository.findByUserName(userName);
+        if (user != null && user.getPassword().equals(password)) {
+            request.getSession().setAttribute("user", user);
+            return "success";
+        }
+        return "failure";
+    }
+
+    @RequestMapping("/index")
+    public String index (HttpServletRequest request) {
+        Object user = request.getSession().getAttribute("user");
+        if (user == null) {
+            return "login";
+        }
+        return "index";
+    }
 }
