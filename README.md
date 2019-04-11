@@ -30,3 +30,6 @@ MyBatis 结合 Druid 配置多数据源
 
 [08](https://github.com/Volong/springboot-learning/tree/gitchat/chapter09)  
 SpringBoot 与 Redis 结合使用
+
+[09](https://github.com/Volong/springboot-learning/tree/gitchat/chapter10)  
+SpringBoot 与 Redis 结合使用，实现数据缓存与 Session 共享。
