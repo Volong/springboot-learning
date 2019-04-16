@@ -1,2 +1,2 @@
 
-使用 Spring Boot 发送邮件
+使用 Spring Boot 集成单元测试
